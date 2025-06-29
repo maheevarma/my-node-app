@@ -1,0 +1,20 @@
+{
+  "name": "aws-cicd-demo",
+  "version": "1.0.0",
+  "description": "Demo Node.js app for AWS CI/CD pipeline",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",           // Production start command
+    "test": "jest",                   // Test runner for CI pipeline
+    "dev": "nodemon app.js"           // Development with auto-restart
+  },
+  "dependencies": {
+    "express": "^4.18.2"             // Production dependency
+  },
+  "devDependencies": {               // Development-only dependencies
+    "jest": "^29.5.0",               // Testing framework
+    "supertest": "^6.3.3",           // HTTP testing library
+    "nodemon": "^2.0.22"             // Development auto-reload
+  }
+}
+
