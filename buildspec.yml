@@ -1,0 +1,40 @@
+version: 0.2  # BuildSpec version (always use 0.2 for latest features)
+
+phases:
+  install:                    # Environment setup phase
+    runtime-versions:
+      nodejs: 18              # Specify Node.js version for consistency
+    commands:
+      - echo Installing dependencies...
+      - npm install           # Install all dependencies (including devDependencies for testing)
+  
+  pre_build:                  # Pre-compilation phase (testing, linting)
+    commands:
+      - echo Running tests...
+      - npm test             # Run test suite - build fails if tests fail
+  
+  build:                     # Main build phase (compilation, packaging)
+    commands:
+      - echo Build started on `date`
+      - echo Creating deployment package...
+      # In more complex apps, this might include:
+      # - npm run build (for React/Angular apps)
+      # - webpack bundling
+      # - Docker image creation
+  
+  post_build:                # Post-build phase (cleanup, notifications)
+    commands:
+      - echo Build completed on `date`
+      # Could include:
+      # - Pushing to container registry
+      # - Sending notifications
+      # - Generating reports
+
+artifacts:                   # What files to keep after build
+  files:
+    - '**/*'                # Include all files
+  exclude-paths:
+    - node_modules/**/*     # Exclude dependencies (will be reinstalled on target)
+    - .git/**/*            # Exclude git history
+
+
